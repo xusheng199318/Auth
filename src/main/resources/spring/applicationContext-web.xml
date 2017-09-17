@@ -16,4 +16,19 @@
 		<property name="prefix" value="/WEB-INF/jsp/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager"/>
+		<property name="loginUrl" value="/index.jsp"/>
+		<property name="successUrl" value="/index.jsp"/>
+		<property name="unauthorizedUrl" value="/index.jsp"/>
+		<!--注入URL拦截规则-->
+		<property name="filterChainDefinitions">
+			<value>
+				/** = authc
+			</value>
+		</property>
+	</bean>
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager"></bean>
 </beans>
