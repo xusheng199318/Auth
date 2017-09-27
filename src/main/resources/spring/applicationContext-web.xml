@@ -19,16 +19,26 @@
 
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager"/>
-		<property name="loginUrl" value="/index.jsp"/>
+		<property name="loginUrl" value="/mytest.jsp"/>
 		<property name="successUrl" value="/index.jsp"/>
-		<property name="unauthorizedUrl" value="/index.jsp"/>
+		<property name="unauthorizedUrl" value="/unauthorized.jsp"/>
 		<!--注入URL拦截规则-->
 		<property name="filterChainDefinitions">
 			<value>
-				/** = authc
+				/css/** = anon
+				/js/** = anon
+				/images/** = anon
+				/login.jsp = anon
+				/index.jsp = anon
+				/page_base_staff.do = perms["staff-list"]
+				/* = authc
 			</value>
 		</property>
 	</bean>
 
-	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager"></bean>
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="authRealm"/>
+	</bean>
+
+	<bean id="authRealm" class="com.arthur.realm.AuthRealm"></bean>
 </beans>

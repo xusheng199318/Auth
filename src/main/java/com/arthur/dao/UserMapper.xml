@@ -141,4 +141,8 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
+  <select id="getUserByUsername" parameterType="string" resultType="com.arthur.model.User">
+      select * from t_user where username = #{username}
+  </select>
+
 </mapper>
