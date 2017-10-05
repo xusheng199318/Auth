@@ -9,4 +9,5 @@ public interface UserService {
 
     int insert(User record);
 
+    int deleteByPrimaryKey(String id);
 }

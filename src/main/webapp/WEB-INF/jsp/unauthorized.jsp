@@ -7,6 +7,6 @@
 <title>mytest</title>
 </head>
 <body>
-	this is my test
+	你没有该操作权限
 </body>
 </html>
